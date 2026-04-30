@@ -1,6 +1,7 @@
 from ctypes import windll, byref, c_ubyte
 from ctypes.wintypes import HWND, RECT
 from datetime import datetime
+import sys
 from PIL import Image, ImageTk
 import win32gui
 import win32con
@@ -313,3 +314,13 @@ def import_macros_json(path):
     except Exception as e:
         print(f"加载失败: {e}")
         return []
+
+
+def resource_path(relative_path):
+    """获取资源文件的绝对路径（支持开发环境和打包后运行）"""
+    try:
+        # PyInstaller 创建的临时文件夹路径
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)

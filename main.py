@@ -26,8 +26,12 @@ class GUI_USE:
     def set_init_window(self):
         self.init_window_name.title("窗口后台宏")
         self.init_window_name.resizable(False, False)
-        self.init_window_name.iconbitmap("app.ico")
+        
+        # self.init_window_name.iconbitmap("app.ico")
 
+        icon_path = func.resource_path("app.ico")
+        self.init_window_name.iconbitmap(icon_path)
+        
         self.init_window_width = 1000
         self.init_window_height = 600
         init_window_x = int(
